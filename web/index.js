@@ -3,6 +3,19 @@ import Papa from 'papaparse';
 am4core.useTheme(am4themes_animated);
 const chart = am4core.create("chartdiv", am4charts.XYChart);
 
+const table = document.querySelector('#table');
+const dataTableOpts = {
+  data: {
+    headings: [
+      'Tahun',
+      'Harga',
+      'Link',
+    ],
+  },
+};
+
+let dataTable = new simpleDatatables.DataTable(table, dataTableOpts);
+
 let csvData = [];
 
 let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -83,6 +96,7 @@ fetchFile().then(csvObj => {
 
 document.querySelector('#model').addEventListener('change', () => {
   let formattedChartObj = {};
+  let formattedTableArr = [];
 
   const selectedModel = document.querySelector('#model').value;
   for (let idx = 0; idx < csvData.length; idx++) {
@@ -93,6 +107,12 @@ document.querySelector('#model').addEventListener('change', () => {
     }
 
     const itemPrice = parseInt(item.Price, 10);
+
+    formattedTableArr.push([
+      item.Year,
+      itemPrice,
+      item.URL,
+    ])
   
     if (!formattedChartObj[item.Year]) {
       formattedChartObj[item.Year] = {
@@ -115,4 +135,11 @@ document.querySelector('#model').addEventListener('change', () => {
   }
 
   chart.data = formattedChartData;
+  dataTable.destroy();
+  dataTable.init({
+    data: {
+      headings: dataTableOpts.data.headings,
+      data: formattedTableArr,
+    }
+  })
 });
