@@ -1,10 +1,11 @@
+Name,Year,Price,URL
 Mazda Biante,2018,255000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-kembangan/6850826
 Mazda 2,2018,210000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-kalideres/6839703
 Mazda 8,2012,159000000,https://www.mobil123.com/dijual/mazda-8-2-3-a-t-dki-jakarta-bintaro/6800045
 Mazda CX-9,2020,958900000,https://www.mobil123.com/dijual/mazda-cx-9-skyactiv-g-dki-jakarta-taman-mini/6727239
 Mazda CX-5,2014,210000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-duren-sawit/6854367
 Mazda 2,2016,170000000,https://www.mobil123.com/dijual/mazda-2-gt-dki-jakarta-mangga-dua/6866580
-Mazda 2,NaN,155000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-tangerang/6866246
+Mazda 2,2015,155000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-tangerang/6866246
 Mazda CX-5,2013,181000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-pademangan/6793456
 Mazda 2,2016,170000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-mangga-dua/6756821
 Mazda 2,2018,185000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-bintaro/6805099
@@ -90,7 +91,7 @@ Mazda 6,2010,144000000,https://www.mobil123.com/dijual/mazda-6-gh-dki-jakarta-ja
 Mazda 2,2015,189000000,https://www.mobil123.com/dijual/mazda-2-gt-jawa-timur-malang-kota/6846180
 Mazda CX-5,2016,278000000,https://www.mobil123.com/dijual/mazda-cx-5-touring-dki-jakarta-mangga-dua/6609348
 Mazda Biante,2015,185000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-kelapa-gading/6858624
-Mazda Biante,NaN,198000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6855262
+Mazda Biante,2015,198000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6855262
 Mazda 8,2011,164000000,https://www.mobil123.com/dijual/mazda-8-2-3-a-t-dki-jakarta-kelapa-gading-timur/6236374
 Mazda Biante,2017,255000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-ancol/6740436
 Mazda CX-5,2013,190000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-mangga-dua/6853373
@@ -166,7 +167,7 @@ Mazda 2,2016,165000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-pon
 Mazda Biante,2017,255000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-pondok-indah/6830583
 Mazda 2,2015,155000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-pondok-indah/6830577
 Mazda 2,2012,105000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-pondok-indah/6830565
-Mazda CX-5,NaN,199000000,https://www.mobil123.com/dijual/mazda-cx-5-sport-jawa-timur-kenjeran/6524803
+Mazda CX-5,2012,199000000,https://www.mobil123.com/dijual/mazda-cx-5-sport-jawa-timur-kenjeran/6524803
 Mazda 2,2013,135000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-timur-kenjeran/6538008
 Mazda 2,2015,149000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-kemayoran/6793332
 Mazda Biante,2016,239000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6830158
@@ -510,7 +511,7 @@ Mazda E2000,1997,40000000,https://www.mobil123.com/dijual/mazda-e2000-jawa-barat
 Mazda 2,2012,129000000,https://www.mobil123.com/dijual/mazda-2-v-lampung-tanjung-karang-pusat/6632955
 Mazda Biante,2013,180000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-tanjung-priok/6615797
 Mazda 2,2012,109000000,https://www.mobil123.com/dijual/mazda-2-rz-dki-jakarta-ancol/6689805
-Mazda CX-5,NaN,192000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-pondok-indah/6808901
+Mazda CX-5,2013,192000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-pondok-indah/6808901
 Mazda CX-5,2014,199000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-mangga-dua/6643021
 Mazda 323,1997,35000000,https://www.mobil123.com/dijual/mazda-323-jawa-tengah-sapuran/6806711
 Mazda 323,1989,23000000,https://www.mobil123.com/dijual/mazda-323-jawa-timur-blimbing/6417860
@@ -653,7 +654,7 @@ Mazda CX-5,2012,205000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touri
 Mazda CX-5,2014,229000000,https://www.mobil123.com/dijual/mazda-cx-5-touring-jawa-barat-bkr-ramdhan/6633432
 Mazda 323,1990,27000000,https://www.mobil123.com/dijual/mazda-323-1-6-manual-dki-jakarta-slipi/6255311
 Mazda Biante,2014,202000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-jawa-timur-mojokerto/6272467
-Mazda CX-5,NaN,188000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-ancol/6735380
+Mazda CX-5,2013,188000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-ancol/6735380
 Mazda CX-5,2015,290000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-jatinegara/6734248
 Mazda 2,2010,102000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-arcamanik/6370546
 Mazda Biante,2016,238000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-kemayoran/6732595
@@ -759,7 +760,7 @@ Mazda 2,2016,186000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-man
 Mazda Biante,2012,148000000,https://www.mobil123.com/dijual/mazda-biante-cc-banten-tangerang-kota/6662908
 Mazda 8,2011,160000000,https://www.mobil123.com/dijual/mazda-8-2-3-a-t-dki-jakarta-kemayoran/6680337
 Mazda Biante,2014,185000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6678591
-Mazda Biante,NaN,140000000,https://www.mobil123.com/dijual/mazda-biante-cc-dki-jakarta-cilandak/6589415
+Mazda Biante,2012,140000000,https://www.mobil123.com/dijual/mazda-biante-cc-dki-jakarta-cilandak/6589415
 Mazda CX-5,2014,215000000,https://www.mobil123.com/dijual/mazda-cx-5-touring-banten-alam-sutera/6499311
 Mazda CX-5,2013,195000000,https://www.mobil123.com/dijual/mazda-cx-5-grand-touring-dki-jakarta-cilandak/6589400
 Mazda CX-9,2012,240000000,https://www.mobil123.com/dijual/mazda-cx-9-dki-jakarta-cilandak/6676045
@@ -787,7 +788,7 @@ Mazda 2,2014,156000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-tb-
 Mazda 8,2012,151000000,https://www.mobil123.com/dijual/mazda-8-2-3-a-t-jawa-barat-pondok-gede/6671961
 Mazda Biante,2016,239000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-pasar-baru/6671597
 Mazda Biante,2016,259000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-jembatan-lima/6665609
-Mazda 2,NaN,127000000,https://www.mobil123.com/dijual/mazda-2-v-jawa-barat-bandung/6602859
+Mazda 2,2013,127000000,https://www.mobil123.com/dijual/mazda-2-v-jawa-barat-bandung/6602859
 Mazda 2,2013,125000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-bandung/6669244
 Mazda 2,2012,103000000,https://www.mobil123.com/dijual/mazda-2-s-jawa-barat-bojongsoang/6573215
 Mazda Biante,2012,148000001,https://www.mobil123.com/dijual/mazda-biante-cc-dki-jakarta-bintaro/6662914
@@ -806,7 +807,7 @@ Mazda 2,2018,186000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-man
 Mazda Biante,2016,239000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6660114
 Mazda Biante,2016,239000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6659757
 Mazda 2,2014,110000000,https://www.mobil123.com/dijual/mazda-2-v-dki-jakarta-mangga-dua/6659558
-Mazda 2,NaN,175000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-bandung/6659164
+Mazda 2,2013,175000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-bandung/6659164
 Mazda 2,2013,125000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-bandung/6659140
 Mazda Biante,2016,239000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-jembatan-lima/6658715
 Mazda CX-5,2012,198000000,https://www.mobil123.com/dijual/mazda-cx-5-sport-sulawesi-selatan-rappocini/6658261
@@ -837,7 +838,7 @@ Mazda 2,2016,170000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-gro
 Mazda 2,2012,120000000,https://www.mobil123.com/dijual/mazda-2-rz-banten-gading-serpong/6597083
 Mazda 6,2013,259000000,https://www.mobil123.com/dijual/mazda-6-gh-dki-jakarta-mangga-dua/6648559
 Mazda CX-5,2012,192000000,https://www.mobil123.com/dijual/mazda-cx-5-sport-sumatera-utara-medan-selayang/6475195
-Mazda 6,NaN,259000000,https://www.mobil123.com/dijual/mazda-6-gj-dki-jakarta-ancol/6647606
+Mazda 6,2013,259000000,https://www.mobil123.com/dijual/mazda-6-gj-dki-jakarta-ancol/6647606
 Mazda CX-5,2013,212000000,https://www.mobil123.com/dijual/mazda-cx-5-sport-jawa-barat-bekasi-barat/6575188
 Mazda 2,2016,178000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-sepanjang-jaya/6576155
 Mazda 2,2012,109000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-pademangan/6586837
@@ -884,7 +885,7 @@ Mazda 2,2016,175000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-cika
 Mazda 2,2016,175000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-duren-sawit/6607610
 Mazda 2,2016,175000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-bekasi/6607606
 Mazda 2,2016,175000000,https://www.mobil123.com/dijual/mazda-2-r-banten-modernland/6607598
-Mazda 2,NaN,115000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-timur-kenjeran/6607576
+Mazda 2,2013,115000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-timur-kenjeran/6607576
 Mazda CX-5,2012,195000000,https://www.mobil123.com/dijual/mazda-cx-5-sport-dki-jakarta-tanah-kusir/6607025
 Mazda CX-5,2015,275000000,https://www.mobil123.com/dijual/mazda-cx-5-touring-dki-jakarta-mangga-dua/6515497
 Mazda 2,2015,195000000,https://www.mobil123.com/dijual/mazda-2-gt-jawa-timur-surabaya/6606198
@@ -915,7 +916,7 @@ Mazda 8,2013,179000000,https://www.mobil123.com/dijual/mazda-8-2-3-a-t-dki-jakar
 Mazda 2,2013,126000000,https://www.mobil123.com/dijual/mazda-2-r-jawa-barat-cilodong/6583715
 Mazda 2,2011,100000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-tanah-kusir/6583232
 Mazda 2,2013,110000000,https://www.mobil123.com/dijual/mazda-2-v-dki-jakarta-kota/6525636
-Mazda Biante,NaN,205000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-jawa-timur-kenjeran/6556760
+Mazda Biante,2016,205000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-jawa-timur-kenjeran/6556760
 Mazda Biante,2014,187000000,https://www.mobil123.com/dijual/mazda-biante-2-0-skyactiv-a-t-dki-jakarta-mangga-dua/6568759
 Mazda 2,2015,164000000,https://www.mobil123.com/dijual/mazda-2-r-dki-jakarta-mangga-dua/6580005
 Mazda 2,2016,193000000,https://www.mobil123.com/dijual/mazda-2-gt-dki-jakarta-kebon-jeruk/6579284

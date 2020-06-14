@@ -4,19 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Harga Mobil Bekas</title>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/base-min.css">
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-min.css">
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
   <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-  <div class="container">
-    <div class="main pure-g">
-      <div class="pure-u-1-1">
-        <div id="chartdiv"></div>
+  <section class="main">
+    <div class="container">
+      <div class="content">
+        <div class="control">
+          <select class="input">
+            <option>Mazda</option>
+          </select>
+          <select id="model" class="input">
+            <option disabled="disabled" selected="selected">- Pilih model -</option>
+          </select>
+          <button id="generate" class="input button">Buat chart</button>
+        </div>
+        <section class="chart-container">
+          <div id="chartdiv"></div>
+        </section>
       </div>
     </div>
-  </div>
+  </section>
   
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/charts.js"></script>
