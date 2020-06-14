@@ -14,7 +14,10 @@ const dataTableOpts = {
   },
 };
 
+// https://github.com/fiduswriter/Simple-DataTables
 let dataTable = new simpleDatatables.DataTable(table, dataTableOpts);
+
+const formatter = new Intl.NumberFormat('id-ID',{ style: 'currency', currency: 'IDR' })
 
 let csvData = [];
 
@@ -110,7 +113,7 @@ document.querySelector('#model').addEventListener('change', () => {
 
     formattedTableArr.push([
       item.Year,
-      itemPrice,
+      formatter.format(itemPrice),
       item.URL,
     ])
   
@@ -141,5 +144,6 @@ document.querySelector('#model').addEventListener('change', () => {
       headings: dataTableOpts.data.headings,
       data: formattedTableArr,
     }
-  })
+  });
+  dataTable.columns().sort(0);
 });
