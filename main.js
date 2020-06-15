@@ -1,16 +1,17 @@
 const Mobil123 = require('./adaptor/mobil123');
+const Garasi = require('./adaptor/garasi');
 const cheerio = require('cheerio');
 const fs = require('fs');
 
-const mobil123Fetcher = new Mobil123();
-mobil123Fetcher.setQuery({
+const garasiFetcher = new Garasi();
+garasiFetcher.setQuery({
   brand: 'Mazda',
   maxPrice: 300000000,
   condition: 'USED',
 }).setPage(12);
 
-mobil123Fetcher.fetchData().then(data => {
-  console.log('done')
+garasiFetcher.fetchData().then(data => {
+  console.log(data)
 })
 
 // const data = fs.readFileSync('result.html', 'utf-8');
