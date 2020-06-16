@@ -1,17 +1,18 @@
 const Mobil123 = require('./adaptor/mobil123');
 const Garasi = require('./adaptor/garasi');
 const Oto = require('./adaptor/oto');
+const Momobil = require('./adaptor/momobil');
 const cheerio = require('cheerio');
 const fs = require('fs');
 
-const otoFetcher = new Oto();
-otoFetcher.setQuery({
+const momobilFetcher = new Momobil();
+momobilFetcher.setQuery({
   brand: 'Mazda',
   // maxPrice: 300000000,
   condition: 'USED',
 }).setPage(1);
 
-otoFetcher.fetchData().then(data => {
+momobilFetcher.fetchData().then(data => {
   console.log(data)
 }).catch(err => console.error(err));
 
