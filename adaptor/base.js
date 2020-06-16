@@ -8,7 +8,7 @@ module.exports = class BaseADaptor {
       brand: null,
       model: null,
       condition: condition[0],
-      minPrice: null,
+      minPrice: 0,
       maxPrice: null,
     }
   }

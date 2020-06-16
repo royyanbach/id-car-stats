@@ -13,10 +13,6 @@ module.exports = class Mobil123 extends BaseAdaptor {
     this.baseUrl = 'https://garasi.id/';
   }
 
-  getQuery() {
-    return this.query;
-  }
-
   async fetchData(next) {
     const options = merge(
       true, 
