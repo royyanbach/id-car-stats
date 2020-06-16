@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel web/index.html --no-source-maps",
-    "build": "parcel builds web/index.html --no-source-maps --public-url /id-car-stats/ -d docs",
+    "build": "NODE_ENV=production parcel builds web/index.html --no-source-maps --public-url /id-car-stats/ -d docs",
     "start": "node main.js"
   },
   "dependencies": {

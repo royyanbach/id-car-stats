@@ -1,5 +1,7 @@
 import Papa from 'papaparse';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 am4core.useTheme(am4themes_animated);
 const chart = am4core.create("chartdiv", am4charts.XYChart);
 
@@ -65,6 +67,8 @@ chart.cursor = new am4charts.XYCursor();
 // chart.scrollbarX = new am4core.Scrollbar();
 // chart.scrollbarY = new am4core.Scrollbar();
 
+const host = isProduction ? 'https://royyanbach.github.io/id-car-stats' : '';
+
 function fetchFile(url = '/sources/mazda.csv') {
   return fetch(url)
     .then(data => data.text())
@@ -76,7 +80,7 @@ function fetchFile(url = '/sources/mazda.csv') {
     })
 }
 
-fetchFile().then(csvObj => {
+fetchFile(`${host}/sources/mazda.csv`).then(csvObj => {
   let models = [];
   csvObj.data.forEach(item => {
     if (item.Name && !models.includes(item.Name)) {
