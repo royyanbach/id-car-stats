@@ -23,46 +23,72 @@ const formatter = new Intl.NumberFormat('id-ID',{ style: 'currency', currency: '
 
 let csvData = [];
 
-let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-categoryAxis.renderer.grid.template.location = 0;
-categoryAxis.dataFields.category = "category";
-categoryAxis.renderer.minGridDistance = 15;
-categoryAxis.renderer.grid.template.location = 0.5;
-categoryAxis.renderer.grid.template.strokeDasharray = "1,3";
-categoryAxis.renderer.labels.template.rotation = -90;
-categoryAxis.renderer.labels.template.horizontalCenter = "left";
-categoryAxis.renderer.labels.template.location = 0.5;
-// categoryAxis.renderer.inside = true;
+var valueAxisX = chart.xAxes.push(new am4charts.ValueAxis());
+valueAxisX.renderer.ticks.template.disabled = true;
+valueAxisX.renderer.axisFills.template.disabled = true;
+valueAxisX.numberFormatter = new am4core.NumberFormatter();
+valueAxisX.numberFormatter.numberFormat = "#";
 
-categoryAxis.renderer.labels.template.adapter.add("dx", function(dx, target) {
-    return -target.maxRight / 2;
+var valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxisY.renderer.ticks.template.disabled = true;
+valueAxisY.renderer.axisFills.template.disabled = true;
+
+var series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.valueX = "x";
+series.dataFields.valueY = "y";
+series.dataFields.value = "value";
+series.strokeOpacity = 0;
+series.sequencedInterpolation = true;
+series.tooltip.pointerOrientation = "vertical";
+
+var bullet = series.bullets.push(new am4core.Circle());
+bullet.fill = am4core.color("#ff0000");
+bullet.propertyFields.fill = "color";
+bullet.strokeOpacity = 0;
+bullet.strokeWidth = 2;
+bullet.fillOpacity = 0.5;
+bullet.stroke = am4core.color("#ffffff");
+bullet.hiddenState.properties.opacity = 0;
+bullet.tooltipText = "Price: [bold]{valueY.value}[/]";
+
+var outline = chart.plotContainer.createChild(am4core.Circle);
+outline.fillOpacity = 0;
+outline.strokeOpacity = 0.8;
+outline.stroke = am4core.color("#ff0000");
+outline.strokeWidth = 2;
+outline.hide(0);
+
+var blurFilter = new am4core.BlurFilter();
+outline.filters.push(blurFilter);
+
+bullet.events.on("over", function(event) {
+    var target = event.target;
+    outline.radius = target.pixelRadius + 2;
+    outline.x = target.pixelX;
+    outline.y = target.pixelY;
+    outline.show();
 })
 
-let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.tooltip.disabled = true;
-valueAxis.renderer.ticks.template.disabled = true;
-valueAxis.renderer.axisFills.template.disabled = true;
+bullet.events.on("out", function(event) {
+    outline.hide();
+})
 
-let series = chart.series.push(new am4charts.ColumnSeries());
-series.dataFields.categoryX = "category";
-series.dataFields.openValueY = "open";
-series.dataFields.valueY = "close";
-series.tooltipText = "Minimum: {openValueY.value} Maximum: {valueY.value}";
-series.sequencedInterpolation = true;
-series.fillOpacity = 0;
-series.strokeOpacity = 1;
-series.columns.template.width = 0.01;
-series.tooltip.pointerOrientation = "horizontal";
+var hoverState = bullet.states.create("hover");
+hoverState.properties.fillOpacity = 1;
+hoverState.properties.strokeOpacity = 1;
 
-let openBullet = series.bullets.create(am4charts.CircleBullet);
-openBullet.locationY = 1;
+series.heatRules.push({ target: bullet, min: 2, max: 60, property: "radius" });
 
-let closeBullet = series.bullets.create(am4charts.CircleBullet);
-
-closeBullet.fill = chart.colors.getIndex(4);
-closeBullet.stroke = closeBullet.fill;
+bullet.adapter.add("tooltipY", function (tooltipY, target) {
+    return -target.radius;
+})
 
 chart.cursor = new am4charts.XYCursor();
+chart.cursor.behavior = "zoomXY";
+chart.cursor.snapToSeries = series;
+
+chart.scrollbarX = new am4core.Scrollbar();
+chart.scrollbarY = new am4core.Scrollbar();
 
 // chart.scrollbarX = new am4core.Scrollbar();
 // chart.scrollbarY = new am4core.Scrollbar();
@@ -121,27 +147,26 @@ document.querySelector('#model').addEventListener('change', () => {
       item.URL,
     ])
   
-    if (!formattedChartObj[item.Year]) {
-      formattedChartObj[item.Year] = {
-        category: item.Year,
-        open: itemPrice,
-        close: itemPrice,
+    if (!formattedChartObj[`${item.Year}${itemPrice}`]) {
+      formattedChartObj[`${item.Year}${itemPrice}`] = {
+        value: 1,
+        x: item.Year,
+        y: itemPrice,
       };
 
       continue;
+    } else {
+      formattedChartObj[`${item.Year}${itemPrice}`]['value']++;
     }
-
-    const chartItem = formattedChartObj[item.Year];
-    chartItem.open = itemPrice < chartItem.open ? itemPrice : chartItem.open;
-    chartItem.close = itemPrice > chartItem.close ? itemPrice : chartItem.close;
   }
 
   let formattedChartData = [];
-  for (const year in formattedChartObj) {
-    formattedChartData.push(formattedChartObj[year])
+  for (const idx in formattedChartObj) {
+    formattedChartData.push(formattedChartObj[idx])
   }
 
   chart.data = formattedChartData;
+  console.log(formattedChartData)
   dataTable.destroy();
   dataTable.init({
     data: {
