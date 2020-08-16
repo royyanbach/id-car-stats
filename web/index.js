@@ -9,9 +9,9 @@ const table = document.querySelector('#table');
 const dataTableOpts = {
   data: {
     headings: [
-      'Tahun',
-      'Harga',
-      'Link',
+      'Year',
+      'Price',
+      'Source',
     ],
   },
 };
@@ -37,24 +37,25 @@ var series = chart.series.push(new am4charts.LineSeries());
 series.dataFields.valueX = "x";
 series.dataFields.valueY = "y";
 series.dataFields.value = "value";
+series.dataFields.model = "model";
 series.strokeOpacity = 0;
 series.sequencedInterpolation = true;
 series.tooltip.pointerOrientation = "vertical";
 
 var bullet = series.bullets.push(new am4core.Circle());
-bullet.fill = am4core.color("#ff0000");
+bullet.fill = am4core.color("#96c6d6");
 bullet.propertyFields.fill = "color";
 bullet.strokeOpacity = 0;
 bullet.strokeWidth = 2;
 bullet.fillOpacity = 0.5;
 bullet.stroke = am4core.color("#ffffff");
 bullet.hiddenState.properties.opacity = 0;
-bullet.tooltipText = "Price: [bold]{valueY.value}[/]";
+bullet.tooltipText = "[bold]{model}[/]:\nYear: {valueX.value}\nPrice: {valueY.value}\nFound Item: {value.value}";
 
 var outline = chart.plotContainer.createChild(am4core.Circle);
 outline.fillOpacity = 0;
 outline.strokeOpacity = 0.8;
-outline.stroke = am4core.color("#ff0000");
+outline.stroke = am4core.color("#96c6d6");
 outline.strokeWidth = 2;
 outline.hide(0);
 
@@ -131,11 +132,12 @@ document.querySelector('#model').addEventListener('change', () => {
   let formattedChartObj = {};
   let formattedTableArr = [];
 
-  const selectedModel = document.querySelector('#model').value;
+  const modelSelector = document.querySelector('#model');
+  const selectedModel = modelSelector.options[modelSelector.selectedIndex];
   for (let idx = 0; idx < csvData.length; idx++) {
     const item = csvData[idx];
 
-    if (item.Name !== selectedModel) {
+    if (item.Name !== modelSelector.value) {
       continue;
     }
 
@@ -152,6 +154,7 @@ document.querySelector('#model').addEventListener('change', () => {
         value: 1,
         x: item.Year,
         y: itemPrice,
+        model: selectedModel.innerText,
       };
 
       continue;
@@ -166,7 +169,6 @@ document.querySelector('#model').addEventListener('change', () => {
   }
 
   chart.data = formattedChartData;
-  console.log(formattedChartData)
   dataTable.destroy();
   dataTable.init({
     data: {
