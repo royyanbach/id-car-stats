@@ -83,7 +83,7 @@ const hoverState = bullet.states.create('hover');
 hoverState.properties.fillOpacity = 1;
 hoverState.properties.strokeOpacity = 1;
 
-series.heatRules.push({ target: bullet, min: 1, max: 20, property: 'radius' });
+series.heatRules.push({ target: bullet, min: 4, max: 60, property: 'radius' });
 
 bullet.adapter.add('tooltipY', function (tooltipY, target) {
   return -target.radius;
