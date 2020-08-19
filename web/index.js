@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 const isProduction = process.env.NODE_ENV === 'production';
 
 am4core.useTheme(am4themes_animated);
-const chart = am4core.create("chartdiv", am4charts.XYChart);
+const chart = am4core.create('chartdiv', am4charts.XYChart);
 
 const table = document.querySelector('#table');
 const dataTableOpts = {
@@ -17,75 +17,80 @@ const dataTableOpts = {
 };
 
 // https://github.com/fiduswriter/Simple-DataTables
-let dataTable = new simpleDatatables.DataTable(table, dataTableOpts);
+global.dataTable = new simpleDatatables.DataTable(table, dataTableOpts);
 
 const formatter = new Intl.NumberFormat('id-ID',{ style: 'currency', currency: 'IDR' })
 
 let csvData = [];
 
-var valueAxisX = chart.xAxes.push(new am4charts.ValueAxis());
+const valueAxisX = chart.xAxes.push(new am4charts.ValueAxis());
 valueAxisX.renderer.ticks.template.disabled = true;
 valueAxisX.renderer.axisFills.template.disabled = true;
 valueAxisX.numberFormatter = new am4core.NumberFormatter();
-valueAxisX.numberFormatter.numberFormat = "#";
+valueAxisX.numberFormatter.numberFormat = '#';
 
-var valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
+const valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxisY.renderer.ticks.template.disabled = true;
 valueAxisY.renderer.axisFills.template.disabled = true;
 
-var series = chart.series.push(new am4charts.LineSeries());
-series.dataFields.valueX = "x";
-series.dataFields.valueY = "y";
-series.dataFields.value = "value";
-series.dataFields.model = "model";
+const series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.valueX = 'x';
+series.dataFields.valueY = 'y';
+series.dataFields.value = 'value';
+series.dataFields.model = 'model';
 series.strokeOpacity = 0;
 series.sequencedInterpolation = true;
-series.tooltip.pointerOrientation = "vertical";
+series.tooltip.pointerOrientation = 'vertical';
 
-var bullet = series.bullets.push(new am4core.Circle());
-bullet.fill = am4core.color("#96c6d6");
-bullet.propertyFields.fill = "color";
+const bullet = series.bullets.push(new am4core.Circle());
+bullet.fill = am4core.color('#7497d6');
+bullet.propertyFields.fill = 'color';
 bullet.strokeOpacity = 0;
 bullet.strokeWidth = 2;
 bullet.fillOpacity = 0.5;
-bullet.stroke = am4core.color("#ffffff");
+bullet.stroke = am4core.color('#ffffff');
 bullet.hiddenState.properties.opacity = 0;
-bullet.tooltipText = "[bold]{model}[/]:\nYear: {valueX.value}\nPrice: {valueY.value}\nFound Item: {value.value}";
+bullet.tooltipText = '[bold]{model}[/]:\nYear: {valueX.value}\nPrice: {valueY.value}\nFound Item: {value.value}';
 
-var outline = chart.plotContainer.createChild(am4core.Circle);
+const outline = chart.plotContainer.createChild(am4core.Circle);
 outline.fillOpacity = 0;
 outline.strokeOpacity = 0.8;
-outline.stroke = am4core.color("#96c6d6");
+outline.stroke = am4core.color('#7497d6');
 outline.strokeWidth = 2;
 outline.hide(0);
 
-var blurFilter = new am4core.BlurFilter();
+const blurFilter = new am4core.BlurFilter();
 outline.filters.push(blurFilter);
 
-bullet.events.on("over", function(event) {
-    var target = event.target;
-    outline.radius = target.pixelRadius + 2;
-    outline.x = target.pixelX;
-    outline.y = target.pixelY;
-    outline.show();
+bullet.events.on('over', function(event) {
+  const target = event.target;
+  console.log(target.pixelRadius);
+  outline.radius = target.pixelRadius + 2;
+  outline.x = target.pixelX;
+  outline.y = target.pixelY;
+  outline.show();
 })
 
-bullet.events.on("out", function(event) {
-    outline.hide();
+bullet.events.on('out', function(event) {
+  outline.hide();
 })
 
-var hoverState = bullet.states.create("hover");
+valueAxisX.events.on('startchanged', function(e) {
+  console.log(e.target)
+})
+
+const hoverState = bullet.states.create('hover');
 hoverState.properties.fillOpacity = 1;
 hoverState.properties.strokeOpacity = 1;
 
-series.heatRules.push({ target: bullet, min: 2, max: 60, property: "radius" });
+series.heatRules.push({ target: bullet, min: 1, max: 20, property: 'radius' });
 
-bullet.adapter.add("tooltipY", function (tooltipY, target) {
-    return -target.radius;
+bullet.adapter.add('tooltipY', function (tooltipY, target) {
+  return -target.radius;
 })
 
 chart.cursor = new am4charts.XYCursor();
-chart.cursor.behavior = "zoomXY";
+chart.cursor.behavior = 'zoomXY';
 chart.cursor.snapToSeries = series;
 
 chart.scrollbarX = new am4core.Scrollbar();
