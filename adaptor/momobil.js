@@ -34,6 +34,10 @@ module.exports = class Mobil123 extends BaseAdaptor {
 
     console.log(options);
     const { data } = await axios.request(options);
+    
+    if (!data.data) {
+      return;
+    }
 
     const items = data.data.map(item => {
       const year = item.attributes.attributes.year;
