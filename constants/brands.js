@@ -1,5 +1,4 @@
 module.exports = [
-  {
-    name: 'Mazda'
-  },
+  'Mazda',
+  'Toyota',
 ]

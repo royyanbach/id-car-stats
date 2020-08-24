@@ -24,6 +24,7 @@ const formatter = new Intl.NumberFormat('id-ID',{ style: 'currency', currency: '
 let csvData = [];
 
 const valueAxisX = chart.xAxes.push(new am4charts.ValueAxis());
+global.valueAxisX = valueAxisX;
 valueAxisX.renderer.ticks.template.disabled = true;
 valueAxisX.renderer.axisFills.template.disabled = true;
 valueAxisX.numberFormatter = new am4core.NumberFormatter();
@@ -64,7 +65,7 @@ outline.filters.push(blurFilter);
 
 bullet.events.on('over', function(event) {
   const target = event.target;
-  console.log(target.pixelRadius);
+  // console.log(target.pixelRadius);
   outline.radius = target.pixelRadius + 2;
   outline.x = target.pixelX;
   outline.y = target.pixelY;
@@ -75,7 +76,7 @@ bullet.events.on('out', function(event) {
   outline.hide();
 })
 
-valueAxisX.events.on('startchanged', function(e) {
+valueAxisX.events.on('startendchanged', function(e) {
   console.log(e.target)
 })
 
@@ -112,25 +113,33 @@ function fetchFile(url = '/sources/mazda.csv') {
     })
 }
 
-fetchFile(`${host}/sources/mazda.csv`).then(csvObj => {
-  let models = [];
-  csvObj.data.forEach(item => {
-    if (item.Name && !models.includes(item.Name)) {
-      models.push(item.Name);
-    }
-  });
-  models.sort();
-  
-  const modelSelect = document.querySelector('#model');
-  models.forEach(model => {
-    const option = document.createElement('option');
-    option.value = model;
-    option.text = model;
-    option.className = 'dynamic-model'
-    modelSelect.appendChild(option);
-  })
+function generateModel(brand = 'mazda') {
+  fetchFile(`${host}/sources/${brand}.csv`).then(csvObj => {
+    let models = [];
+    csvObj.data.forEach(item => {
+      if (item.Name && !models.includes(item.Name)) {
+        models.push(item.Name);
+      }
+    });
+    models.sort();
+    
+    const modelSelect = document.querySelector('#model');
+    modelSelect.querySelectorAll('option:not(:disabled)').forEach(el => el.remove());
 
-  csvData = csvObj.data;
+    models.forEach(model => {
+      const option = document.createElement('option');
+      option.value = model;
+      option.text = model;
+      option.className = 'dynamic-model';
+      modelSelect.appendChild(option);
+    })
+  
+    csvData = csvObj.data;
+  });
+}
+
+document.querySelector('#brand').addEventListener('change', (e) => {
+  generateModel(e.target.value);
 });
 
 document.querySelector('#model').addEventListener('change', () => {
