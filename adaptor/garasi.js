@@ -7,13 +7,19 @@ const BaseAdaptor = require('./base');
 
 const PATH = '/api/vehicles';
 
-module.exports = class Mobil123 extends BaseAdaptor {
+module.exports = class Garasi extends BaseAdaptor {
   constructor() {
     super();
     this.baseUrl = 'https://garasi.id/';
+    this.next = '';
   }
 
-  async fetchData(next) {
+  setNext(next) {
+    this.next = next;
+    return this;
+  }
+
+  async fetchData() {
     const options = merge(
       true, 
       axiosDefaultConfig,
@@ -31,8 +37,8 @@ module.exports = class Mobil123 extends BaseAdaptor {
       }
     );
 
-    if (next) {
-      options.params['next'] = next;
+    if (this.next) {
+      options.params['next'] = this.next;
     }
 
     console.log(options.params);
@@ -64,7 +70,8 @@ module.exports = class Mobil123 extends BaseAdaptor {
     await csvWriter.writeRecords(items);
 
     if (data.meta && data.meta.cursor && data.meta.cursor.next) {
-      return this.fetchData(data.meta.cursor.next);
+      this.setNext(data.meta.cursor.next);
+      return this.fetchData();
     } else {
       return items;
     }
