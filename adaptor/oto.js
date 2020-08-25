@@ -55,7 +55,7 @@ module.exports = class Mobil123 extends BaseAdaptor {
         name,
         price: item.price,
         url: item.absoluteUrl,
-        year: item.registrationYear,
+        year: item.title.substr(0, 4),
       }
     })
 
