@@ -1,14 +1,17 @@
+const cheerio = require('cheerio');
+const fs = require('fs');
+
+const BRANDS = require('./constants/brands');
+
 const Mobil123 = require('./adaptor/mobil123');
 const Garasi = require('./adaptor/garasi');
 const Oto = require('./adaptor/oto');
 const Momobil = require('./adaptor/momobil');
 const Carmudi = require('./adaptor/carmudi');
-const cheerio = require('cheerio');
-const fs = require('fs');
 
-const fetcher = new Momobil();
+const fetcher = new Carmudi();
 fetcher.setQuery({
-  brand: 'Mazda',
+  brand: BRANDS[5],
   // maxPrice: 300000000,
   condition: 'USED',
 }).setPage(1);

@@ -104,7 +104,7 @@ module.exports = class Mobil123 {
 
     console.log(options.params);
     const { data } = await axios.request(options);
-    fs.writeFileSync('result.html', data);
+    // fs.writeFileSync('result.html', data);
     await this.processData(data, true);
   }
 
