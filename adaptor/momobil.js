@@ -17,7 +17,7 @@ module.exports = class Mobil123 extends BaseAdaptor {
   async fetchData() {
     const offset = (this.page - 1) * PER_PAGE;
     const options = merge(
-      true, 
+      true,
       axiosDefaultConfig,
       {
         url: PATH,
@@ -34,7 +34,7 @@ module.exports = class Mobil123 extends BaseAdaptor {
 
     console.log(options);
     const { data } = await axios.request(options);
-    
+
     if (!data.data) {
       return;
     }
@@ -43,8 +43,8 @@ module.exports = class Mobil123 extends BaseAdaptor {
       const year = item.attributes.attributes.year;
       const host = 'https://momobil.id/';
       const path = 'detail-mobil-bekas/';
-      const brand = item.attributes.attributes.brand_name;
-      const itemName = item.attributes.name.replace(/([^a-zA-Z\d\s:]|\s)/g, '-');
+      const brand = item.attributes.attributes.brand_name.trim();
+      const itemName = item.attributes.name.replace(/([^a-zA-Z\d\s:]|\s)/g, '-').trim();
       const url = `${host}${path}${brand}/${itemName}-${year}-${item.id}`.toLowerCase();
 
       return {

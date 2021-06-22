@@ -1,7 +1,7 @@
 {
   "name": "id-car-stats",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "repository": "git@github.com:royyanbach/id-car-stats.git",
   "author": "royyanbach <royyan.bachtiar@bukalapak.com>",
   "license": "MIT",

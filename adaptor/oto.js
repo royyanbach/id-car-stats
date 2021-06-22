@@ -5,8 +5,9 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const axiosDefaultConfig = require('../constants/axios');
 const BaseAdaptor = require('./base');
 
-const PATH = '/v1/inventory/index';
+const PATH = '/v4/inventory/index';
 const PER_PAGE = 20;
+const WEB_HOST = 'https://www.oto.com/';
 
 module.exports = class Mobil123 extends BaseAdaptor {
   constructor() {
@@ -16,31 +17,34 @@ module.exports = class Mobil123 extends BaseAdaptor {
 
   async fetchData() {
     const options = merge(
-      true, 
+      true,
       axiosDefaultConfig,
       {
         url: PATH,
-        // method: 'POST',
+        method: 'POST',
         baseURL: this.baseUrl,
         params: {
           'business_unit': 'car',
           'lang_code': 'id',
+          'langCode': 'id',
           'country_code': 'id',
+          'countryCode': 'id',
           'source_id': 'Oto',
-          'ip_address': '139.192.26.126',
+          // 'ip_address': '118.136.131.8',
           'sub_source_id': 'Desktop',
           'platform': 'web',
         },
         data: {
+          bu: 'mobil',
           search: this.query.brand.toLowerCase(),
           pageSize: PER_PAGE,
           page: this.page,
           sort: 'createdAt',
           order: 'desc',
-          priceRange: JSON.stringify({
-            min: this.query.minPrice,
-            max: this.query.maxPrice || 10000000000,
-          }),
+          // priceRange: JSON.stringify({
+          //   min: this.query.minPrice,
+          //   max: this.query.maxPrice || 10000000000,
+          // }),
         }
       }
     );
@@ -48,16 +52,19 @@ module.exports = class Mobil123 extends BaseAdaptor {
     console.log(options);
     const { data } = await axios.request(options);
 
-    const items = data.data.items.map(item => {
+    const items = data.data.items.map((item, idx) => {
       const name = `${item.brand} ${item.model}`.replace(/\((.*?)\)/g, '').trim();
+      const guessedYearFromTitle = Number(item.title.substr(0, 4)) || 0;
+      const { registrationYear } = item;
+      const earliestYear = Math.min(registrationYear, guessedYearFromTitle);
 
       return {
         name,
         price: item.price,
-        url: item.absoluteUrl,
-        year: item.title.substr(0, 4),
+        url: `${WEB_HOST}${item.url}`,
+        year: earliestYear ? earliestYear : registrationYear,
       }
-    })
+    }).filter(({ price, year }) => price && year);
 
     const csvWriter = createCsvWriter({
       path: 'result.csv',
@@ -75,6 +82,7 @@ module.exports = class Mobil123 extends BaseAdaptor {
     if (data.data && data.data._meta && data.data._meta.pageCount && data.data._meta.pageCount > this.page) {
       this.page = this.page + 1;
       return this.fetchData();
+      // return Promise.resolve();
     } else {
       return items;
     }

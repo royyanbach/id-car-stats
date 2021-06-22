@@ -7,7 +7,7 @@ const fs = require('fs');
 const axiosDefaultConfig = require('../constants/axios');
 const BaseAdaptor = require('./base');
 
-const PER_PAGE = 30;
+const PER_PAGE = 25;
 
 module.exports = class Carmudi extends BaseAdaptor {
   constructor() {
@@ -17,13 +17,14 @@ module.exports = class Carmudi extends BaseAdaptor {
 
   async fetchData() {
     const options = merge(
-      true, 
+      true,
       axiosDefaultConfig,
       {
-        url: `/cars/${this.query.brand.toLowerCase()}/used/`,
+        url: `/en/used-cars-for-sale/${this.query.brand.toLowerCase()}/indonesia`,
         baseURL: this.baseUrl,
         params: {
-          page: this.page,
+          page_number: this.page,
+          page_size: PER_PAGE,
         }
       }
     );
@@ -36,15 +37,13 @@ module.exports = class Carmudi extends BaseAdaptor {
 
   async processData(data, recursive = false) {
     const $ = cheerio.load(data);
-    const itemsDom = $('.catalog-listing-items-container .catalog-listing-description-top');
+    const itemsDom = $('.listing--card');
 
     const items = itemsDom.map((idx, el) => {
-      const link = $(el).find('h3 a');
-      const name = link.text().trim();
-      const href = link.attr('href');
-      const url = new URL(href, this.baseUrl).href;
-      const year = parseInt(href.substr(1, 4), 10);
-      const price = parseInt($(el).find('.item-price a').text().replace(' Juta', '000000'), 10);
+      const dataAttr = $(el).data();
+      const { make, model, url, year } = dataAttr;
+      const name = `${make} ${model}`;
+      const price = parseInt($(el).find('.listing__price').text().replace(/(Rp|\.)/g, '').trim(), 10);
       return {
         name,
         price,
