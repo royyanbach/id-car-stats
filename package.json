@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "node build.js",
-    "build:gh-page": "NODE_ENV=production parcel builds web/index.html --no-source-maps --public-url /id-car-stats/ -d docs",
+    "build:gh-page": "NODE_ENV=production node build.js",
     "crawl": "node crawl.js"
   },
   "dependencies": {
