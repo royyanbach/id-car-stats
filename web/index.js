@@ -1,6 +1,7 @@
 import Papa from 'papaparse';
 
-const isProduction = process.env.NODE_ENV === 'production';
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const AVAILABLE_YEARS = (process.env.AVAILABLE_YEARS || '').split(',');
 
 am4core.useTheme(am4themes_animated);
 const chart = am4core.create('chartdiv', am4charts.XYChart);
@@ -111,7 +112,18 @@ chart.scrollbarY = new am4core.Scrollbar();
 // chart.scrollbarX = new am4core.Scrollbar();
 // chart.scrollbarY = new am4core.Scrollbar();
 
-const host = isProduction ? 'https://royyanbach.github.io/id-car-stats' : '';
+const host = IS_PRODUCTION ? 'https://royyanbach.github.io/id-car-stats' : '';
+
+function dispatchEventFromEl(el) {
+  if ("createEvent" in document) {
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    el.dispatchEvent(evt);
+  }
+  else
+    el.fireEvent("onchange");
+
+}
 
 function fetchFile(url = '/sources/mazda.csv') {
   return fetch(url)
@@ -124,8 +136,8 @@ function fetchFile(url = '/sources/mazda.csv') {
     })
 }
 
-function generateModel(brand = 'mazda') {
-  fetchFile(`${host}/sources/${brand}.csv`).then(csvObj => {
+function generateModel(dataVersion, brand = 'mazda', defaultValue) {
+  return fetchFile(`${host}/sources/${dataVersion}/${brand}.csv`).then(csvObj => {
     let models = [];
     csvObj.data.forEach(item => {
       if (item.Name && !models.includes(item.Name)) {
@@ -133,25 +145,35 @@ function generateModel(brand = 'mazda') {
       }
     });
     models.sort();
-    
+
     const modelSelect = document.querySelector('#model');
     modelSelect.querySelectorAll('option:not(:disabled)').forEach(el => el.remove());
 
+    let defaultValueMatch = false;
+
     models.forEach(model => {
       const option = document.createElement('option');
+      if (defaultValue && model == defaultValue) {
+        defaultValueMatch = true;
+        // option.selected = "selected";
+      }
       option.value = model;
       option.text = model;
       option.className = 'dynamic-model';
       modelSelect.appendChild(option);
     })
-  
+
+    if (defaultValue && defaultValueMatch) {
+      modelSelect.value = defaultValue;
+    } else if (defaultValue) {
+      modelSelect.value = 'none';
+    }
+
     csvData = csvObj.data;
   });
 }
 
-document.querySelector('#brand').addEventListener('change', (e) => {
-  document.querySelector('#model').value = 'none'
-  generateModel(e.target.value);
+function resetChartAndTable() {
   chart.data = [];
   dataTable.destroy();
   dataTable.init({
@@ -160,6 +182,34 @@ document.querySelector('#brand').addEventListener('change', (e) => {
       data: [],
     }
   });
+}
+
+function generateDataVersion() {
+  const currentYear = new Date().getFullYear();
+  const dataVersionSelect = document.querySelector('#data-version');
+  AVAILABLE_YEARS.forEach(dataVersion => {
+    const option = document.createElement('option');
+    option.value = dataVersion;
+    option.text = dataVersion;
+    if (currentYear == dataVersion) {
+      option.selected = "selected";
+    }
+    dataVersionSelect.appendChild(option);
+  });
+
+  dataVersionSelect.addEventListener('change', async (e) => {
+    const selectedBrandEl = document.querySelector('#brand');
+    const selectedModelEl = document.querySelector('#model');
+    await generateModel(e.target.value, selectedBrandEl.value, selectedModelEl.value);
+    dispatchEventFromEl(selectedModelEl);
+  });
+}
+
+document.querySelector('#brand').addEventListener('change', async (e) => {
+  const selectedDataVersion = document.querySelector('#data-version').value;
+  document.querySelector('#model').value = 'none';
+  await generateModel(selectedDataVersion, e.target.value)
+  resetChartAndTable();
 });
 
 document.querySelector('#model').addEventListener('change', () => {
@@ -183,7 +233,7 @@ document.querySelector('#model').addEventListener('change', () => {
       formatter.format(itemPrice),
       item.URL,
     ])
-  
+
     if (!formattedChartObj[`${item.Year}${itemPrice}`]) {
       formattedChartObj[`${item.Year}${itemPrice}`] = {
         value: 1,
@@ -215,3 +265,5 @@ document.querySelector('#model').addEventListener('change', () => {
   });
   dataTable.columns().sort(0);
 });
+
+generateDataVersion();

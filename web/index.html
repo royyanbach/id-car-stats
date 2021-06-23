@@ -12,22 +12,27 @@
     <div class="container">
       <div class="content">
         <div class="control">
-          <select id="brand" class="input">
-            <option disabled="disabled" selected="selected">- Select brand -</option>
-            <option value="chevrolet">Chevrolet</option>
-            <option value="daihatsu">Daihatsu</option>
-            <option value="ford">Ford</option>
-            <option value="honda">Honda</option>
-            <option value="hyundai">Hyundai</option>
-            <option value="kia">KIA</option>
-            <option value="mazda">Mazda</option>
-            <option value="mitsubishi">Mitsubishi</option>
-            <option value="nissan">Nissan</option>
-            <option value="suzuki">Suzuki</option>
-            <option value="toyota">Toyota</option>
-          </select>
-          <select id="model" class="input">
-            <option disabled="disabled" value="none" selected="selected">- Select model -</option>
+          <div class="left">
+            <select id="brand" class="input">
+              <option disabled="disabled" selected="selected">- Select brand -</option>
+              <option value="chevrolet">Chevrolet</option>
+              <option value="daihatsu">Daihatsu</option>
+              <option value="ford">Ford</option>
+              <option value="honda">Honda</option>
+              <option value="hyundai">Hyundai</option>
+              <option value="kia">KIA</option>
+              <option value="mazda">Mazda</option>
+              <option value="mitsubishi">Mitsubishi</option>
+              <option value="nissan">Nissan</option>
+              <option value="suzuki">Suzuki</option>
+              <option value="toyota">Toyota</option>
+            </select>
+            <select id="model" class="input">
+              <option disabled="disabled" value="none" selected="selected">- Select model -</option>
+            </select>
+          </div>
+          <select id="data-version" class="input">
+            <option disabled="disabled" value="none" selected="selected">- Select data version -</option>
           </select>
           <!-- <button id="generate" class="input button">Buat chart</button> -->
         </div>
@@ -38,7 +43,7 @@
       </div>
     </div>
   </section>
-  
+
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/charts.js"></script>
   <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
